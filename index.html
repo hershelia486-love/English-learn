@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>뉴욕물먹은 보름달</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="hd">
+  <div class="hd-top">
+    <div class="hd-avatar">🌕</div>
+    <div>
+      <div class="hd-title">뉴욕물먹은 보름달</div>
+      <div class="hd-sub">미드관용구 600 · 통암기학습</div>
+    </div>
+    <div class="hd-badge" id="totalBadge">0 / 600</div>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  <div class="tabs">
+    <div class="tab on" onclick="setTab('list')">📋 전체목록</div>
+    <div class="tab" onclick="setTab('card')">🃏 카드학습</div>
+    <div class="tab" onclick="setTab('blank')">✏️ 빈칸</div>
+    <div class="tab" onclick="setTab('fav')">⭐ 즐겨찾기</div>
+  </div>
+</div>
+
+<!-- 전체 목록 -->
+<div id="viewList">
+  <div class="search-wrap">
+    <input class="search-input" id="searchInput" placeholder="🔍 한국어 또는 영어로 검색..." oninput="onSearch(this.value)">
+    <span class="search-clear" id="searchClear" onclick="clearSearch()">✕</span>
+  </div>
+  <div class="filter-row" id="filterRow">
+    <span class="filter-chip on" onclick="setFilter('all',this)">전체 600</span>
+    <span class="filter-chip" onclick="setFilter('star',this)">⭐ 즐겨찾기</span>
+    <span class="filter-chip" onclick="setFilter('done',this)">✅ 암기완료</span>
+    <span class="filter-chip" onclick="setFilter('todo',this)">📌 미암기</span>
+    <span class="filter-chip" onclick="setFilter('scene',this)">💡 연상있음</span>
+    <span class="filter-chip" onclick="setFilter('1-100',this)">1-100</span>
+    <span class="filter-chip" onclick="setFilter('101-200',this)">101-200</span>
+    <span class="filter-chip" onclick="setFilter('201-300',this)">201-300</span>
+    <span class="filter-chip" onclick="setFilter('301-400',this)">301-400</span>
+    <span class="filter-chip" onclick="setFilter('401-500',this)">401-500</span>
+    <span class="filter-chip" onclick="setFilter('501-600',this)">501-600</span>
+  </div>
+  <div class="list-wrap">
+    <div class="list-info" id="listInfo"></div>
+    <div id="listContainer"></div>
+  </div>
+</div>
+
+<!-- 카드 학습 -->
+<div id="viewCard" style="display:none">
+  <div class="card-wrap">
+    <div class="card-nav-info" id="cardInfo">1 / 600</div>
+    <div class="shuffle-wrap">
+      <span class="shuffle-btn" onclick="shuffleCards()">🔀 섞기</span>
+      <span class="shuffle-btn" style="margin-left:6px" onclick="resetCards()">🔄 순서대로</span>
+    </div>
+    <div class="card-box" onclick="flipCard()" id="mainCard">
+      <div class="card-stripe"></div>
+      <div class="card-inner">
+        <div class="card-mode-label">탭하면 영어가 나와요</div>
+        <div class="card-num" id="cNum">#001</div>
+        <div class="card-kr" id="cKr">로딩 중...</div>
+        <div class="card-scene" id="cScene" style="display:none"></div>
+        <div class="card-en" id="cEn"></div>
+        <div class="card-flip-hint" id="cHint">▼ 탭해서 영어 확인</div>
+      </div>
+    </div>
+    <div class="card-controls">
+      <div class="card-btn" onclick="prevCard()">◀ 이전</div>
+      <div class="card-btn primary" onclick="nextCard()">다음 ▶</div>
+    </div>
+    <div class="card-controls">
+      <div class="card-btn" id="cardSpeak" onclick="speakCard()">🔊 듣기</div>
+      <div class="card-btn" id="cardStar" onclick="toggleCardStar()">☆ 즐겨찾기</div>
+      <div class="card-btn" id="cardDone" onclick="toggleCardDone()">✅ 암기완료</div>
+    </div>
+  </div>
+</div>
+
+<!-- 빈칸 채우기 -->
+<div id="viewBlank" style="display:none">
+  <div class="blank-wrap">
+    <div class="filter-row">
+      <span class="filter-chip on" onclick="setBlankFilter('all',this)">전체</span>
+      <span class="filter-chip" onclick="setBlankFilter('star',this)">⭐ 즐겨찾기</span>
+      <span class="filter-chip" onclick="setBlankFilter('todo',this)">미암기만</span>
+    </div>
+    <div id="blankContainer"></div>
+  </div>
+</div>
+
+<!-- 즐겨찾기 -->
+<div id="viewFav" style="display:none">
+  <div class="list-wrap" style="padding-top:16px">
+    <div class="list-info" id="favInfo"></div>
+    <div id="favContainer"></div>
+  </div>
+</div>
+
+<!-- 스크롤 버튼 -->
+<div class="scroll-btns" id="scrollBtns">
+  <div class="scroll-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="맨 위로">↑</div>
+  <div class="scroll-btn" onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})" title="맨 아래로">↓</div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
