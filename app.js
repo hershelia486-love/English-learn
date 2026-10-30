@@ -80,6 +80,7 @@ function renderList(){
         <span class="ph-kr">${esc(p.kr)}${isDone?'<span class="tag" style="color:var(--green);border-color:var(--green)">✓</span>':''}</span>
       </div>
       <div class="ph-en">${esc(p.en)}</div>
+      <div class="ph-pron"><span>한글 발음 · 자동 표기</span> ${esc(PRONUNCIATION[p.n] || '')}</div>
       ${hasScene?`<div class="ph-scene" id="sc${p.n}">${SCENE[p.n]}</div>`:''}
       <div class="ph-actions">
         ${hasScene?`<button class="ph-btn" onclick="toggleScene(${p.n},this)">💡 연상</button>`:''}
@@ -318,6 +319,7 @@ function renderFav(){
         <span class="ph-kr">${esc(p.kr)}</span>
       </div>
       <div class="ph-en">${esc(p.en)}</div>
+      <div class="ph-pron"><span>한글 발음 · 자동 표기</span> ${esc(PRONUNCIATION[p.n] || '')}</div>
       ${SCENE[p.n]?`<div class="ph-scene show">${SCENE[p.n]}</div>`:''}
       <div class="ph-actions">
         <button class="ph-btn" onclick="speakPhrase('${escAttr(p.en)}',this)">🔊 듣기</button>
