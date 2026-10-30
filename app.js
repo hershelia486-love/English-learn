@@ -349,4 +349,3 @@ function escAttr(s){return String(s||'').replace(/'/g,'&#39;').replace(/"/g,'&qu
 cardOrder=cardOrder;
 updateProgress();
 renderList();
-</script>
